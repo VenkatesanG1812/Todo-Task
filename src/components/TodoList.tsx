@@ -1,11 +1,10 @@
-import { LOCAL_STORAGE } from "../constants/localStorage";
-import { handleDone, handleRemove } from "../controller.ts/todoController";
-import { StateFunction } from "../utils/utilsType";
+import { handleRemove, moveToCompleted } from "../controller.ts/todoController";
+import { CompletedListType, StateFunctionType } from "../utils/utilsType";
 
 interface Props {
   listData: string[];
-  setData: StateFunction<string>;
-  setCompleted: StateFunction<string>;
+  setData: StateFunctionType<string>;
+  setCompleted: StateFunctionType<CompletedListType>;
 }
 export default function TodoList({ listData, setData, setCompleted }: Props) {
   return (
@@ -27,14 +26,7 @@ export default function TodoList({ listData, setData, setCompleted }: Props) {
                   </button>
                   <button
                     onClick={() =>
-                      handleDone(
-                        ind,
-                        setData,
-                        setCompleted,
-                        listData,
-                        LOCAL_STORAGE.Todo,
-                        LOCAL_STORAGE.TodoCompleted
-                      )
+                      moveToCompleted(ind, setData, setCompleted, listData)
                     }
                   >
                     Done

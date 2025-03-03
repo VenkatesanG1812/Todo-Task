@@ -3,11 +3,12 @@ import { fetchCompleted, fetchTodoList } from "../models/todoModel";
 import { handleNewLearning } from "../controller.ts/todoController";
 import TodoList from "./TodoList";
 import CompletedList from "./CompletedList";
+import { CompletedListType } from "../utils/utilsType";
 
 export default function Todo() {
   const [listData, setData] = useState<string[]>([]);
   const [newData, setNewData] = useState("");
-  const [completed, setCompleted] = useState<string[]>([]);
+  const [completed, setCompleted] = useState<CompletedListType[]>([]);
 
   useEffect(() => {
     setData(fetchTodoList());

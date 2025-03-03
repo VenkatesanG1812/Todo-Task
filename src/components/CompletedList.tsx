@@ -1,10 +1,10 @@
-import { handleDone } from "../controller.ts/todoController";
-import { StateFunction } from "../utils/utilsType";
+import { moveToLearning } from "../controller.ts/todoController";
+import { CompletedListType, StateFunctionType } from "../utils/utilsType";
 
 interface CompletedListProps {
-  completed: string[];
-  setCompleted: StateFunction<string>;
-  setData: StateFunction<string>;
+  completed: CompletedListType[];
+  setCompleted: StateFunctionType<CompletedListType>;
+  setData: StateFunctionType<string>;
 }
 export default function CompletedList({
   completed,
@@ -22,21 +22,14 @@ export default function CompletedList({
             </tr>
           </thead>
           <tbody>
-            {completed.map((list: string, ind: number) => (
-              <tr key={list}>
+            {completed.map((list: CompletedListType, ind: number) => (
+              <tr key={list.taskName}>
                 <td>
                   <div className="listdata-row">
                     <span>{list.taskName}</span>
                     <button
                       onClick={() =>
-                        handleDone(
-                          ind,
-                          setCompleted,
-                          setData,
-                          completed,
-                          "todoComplete",
-                          "todoList"
-                        )
+                        moveToLearning(ind, setCompleted, setData, list)
                       }
                     >
                       Move

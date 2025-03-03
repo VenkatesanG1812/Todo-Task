@@ -1,4 +1,4 @@
-export function updateLocalStorage(key: string, value: Array<string>) {
+export function updateLocalStorage<T>(key: string, value: T[]) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 export function getDataFromLocalStorage(
