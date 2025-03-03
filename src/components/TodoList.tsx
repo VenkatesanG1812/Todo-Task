@@ -1,5 +1,5 @@
 import { LOCAL_STORAGE } from "../constants/localStorage";
-import { handleDone } from "../controller.ts/todoController";
+import { handleDone, handleRemove } from "../controller.ts/todoController";
 import { StateFunction } from "../utils/utilsType";
 
 interface Props {
@@ -22,6 +22,9 @@ export default function TodoList({ listData, setData, setCompleted }: Props) {
               <td>
                 <div className="listdata-row">
                   <span>{list}</span>
+                  <button onClick={() => handleRemove(ind, setData)}>
+                    Remove{" "}
+                  </button>
                   <button
                     onClick={() =>
                       handleDone(

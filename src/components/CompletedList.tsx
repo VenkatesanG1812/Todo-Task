@@ -18,6 +18,7 @@ export default function CompletedList({
           <thead>
             <tr>
               <th>Completed Task</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -25,7 +26,7 @@ export default function CompletedList({
               <tr key={list}>
                 <td>
                   <div className="listdata-row">
-                    <span>{list}</span>
+                    <span>{list.taskName}</span>
                     <button
                       onClick={() =>
                         handleDone(
@@ -42,6 +43,7 @@ export default function CompletedList({
                     </button>
                   </div>
                 </td>
+                <td>{list.taskNotes}</td>
               </tr>
             ))}
           </tbody>

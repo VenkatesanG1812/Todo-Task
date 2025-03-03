@@ -14,7 +14,7 @@ export default function Todo() {
     setCompleted(fetchCompleted());
   }, []);
   return (
-    <div className="todo-container background-image">
+    <div className="todo-container ">
       <TodoList
         listData={listData}
         setData={setData}

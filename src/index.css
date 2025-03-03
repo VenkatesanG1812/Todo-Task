@@ -38,7 +38,9 @@ input:focus {
 
 .todo-container table thead,
 tbody,
-tr {
+tr,
+td,
+th {
   border: 2px solid black;
 }
 .todo-container button {
@@ -80,5 +82,5 @@ table tr:hover {
   background-position: center;
   background-size: cover;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 }

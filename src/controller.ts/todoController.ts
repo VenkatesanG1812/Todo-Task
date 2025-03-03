@@ -28,24 +28,48 @@ export function handleDone(
   sourceKey: string,
   destinationKey: string
 ) {
-  const completedTask = currentList[index];
-  const alertConfirmed = window.confirm(
-    `Do we need  "${completedTask}" move ?`
-  );
-  console.log("sourceList", sourceList);
-  if (alertConfirmed && completedTask) {
-    sourceList((prevState) => {
-      const updatedArray = prevState.filter(
-        (_, currentInd) => currentInd !== index
-      );
-      updateLocalStorage(sourceKey, updatedArray);
-      return updatedArray;
-    });
-
-    destination((prevState) => {
-      const updatedValue = [...prevState, completedTask];
-      updateLocalStorage(destinationKey, updatedValue);
-      return updatedValue;
+  if (sourceKey === LOCAL_STORAGE.Todo) {
+    const taskName = currentList[index];
+    const taskNotes = window.prompt(`Enter notes for  "${taskName}" ?`);
+    if (taskName && taskNotes) {
+      sourceList((prevState) => {
+        const updatedArray = prevState.filter(
+          (_, currentInd) => currentInd !== index
+        );
+        updateLocalStorage(sourceKey, updatedArray);
+        return updatedArray;
+      });
+      destination((prevState) => {
+        const updatedValue = [...prevState, { taskName, taskNotes }];
+        updateLocalStorage(destinationKey, updatedValue);
+        return updatedValue;
+      });
+    }
+  } else {
+    const taskName = currentList[index].taskName;
+    const confirmation = window.confirm(` Do we need to ${taskName} move`);
+    if (confirmation) {
+      sourceList((prevState) => {
+        const updatedArray = prevState.filter(
+          (_, currentInd) => currentInd !== index
+        );
+        updateLocalStorage(sourceKey, updatedArray);
+        return updatedArray;
+      });
+      destination((prevState) => {
+        const updatedValue = [...prevState, taskName];
+        updateLocalStorage(destinationKey, updatedValue);
+        return updatedValue;
+      });
+    }
+  }
+}
+export function handleRemove(index: number, setData: StateFunction<string>) {
+  if (window.confirm("Need to remove ?")) {
+    setData((prevState) => {
+      const updateList = prevState.filter((_, curr) => curr !== index);
+      updateLocalStorage(LOCAL_STORAGE.Todo, updateList);
+      return updateList;
     });
   }
 }
