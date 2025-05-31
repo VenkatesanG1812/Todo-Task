@@ -71,7 +71,7 @@ thead {
   font-size: large;
   color: #1700ac;
 }
-table tr:hover {
+table tbody tr:hover {
   background-color: antiquewhite;
 }
 .listdata-row span::first-letter {

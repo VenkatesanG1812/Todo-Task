@@ -1,11 +1,11 @@
 import { moveToLearning } from "../controller.ts/todoController";
 import { CompletedListType, StateFunctionType } from "../utils/utilsType";
 
-interface CompletedListProps {
+type CompletedListProps = {
   completed: CompletedListType[];
   setCompleted: StateFunctionType<CompletedListType>;
   setData: StateFunctionType<string>;
-}
+};
 export default function CompletedList({
   completed,
   setCompleted,

@@ -37,7 +37,7 @@ function updateSourceList<T>(
     return updatedArray;
   });
 }
-function updateDesinationList<T extends CompletedListType | string>(
+function updateDesinationList<T>(
   destinationUpdater: StateFunctionType<T>,
   taskObj: T,
   destinationKey: string
@@ -61,7 +61,10 @@ export function moveToCompleted(
 
     updateDesinationList(
       destinationUpdater,
-      { taskName, taskNotes },
+      {
+        taskName,
+        taskNotes,
+      },
       LOCAL_STORAGE.TodoCompleted
     );
   }
